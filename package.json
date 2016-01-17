@@ -1,0 +1,33 @@
+{
+  "name": "boscode",
+  "version": "0.0.6",
+  "description": "Pseudocode javascript helper methods for learning pseudocode compliant with Board of studies, New South Wales, Australia, Software Design and Development Stage 6, Software and Course Specifications Higher School Certificiate 2012",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "grunt"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Quobject/boscode.git"
+  },
+  "keywords": [
+    "pseudocode"
+  ],
+  "author": "Matthias Ludwig <mludwig@quobject.io>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Quobject/boscode/issues"
+  },
+  "homepage": "https://github.com/Quobject/boscode",
+  "devDependencies": {
+    "grunt": "~0.4.5",
+    "grunt-contrib-jshint": "~0.11.3",
+    "mocha": "~2.3.3",
+    "grunt-mocha-test": "~0.12.7",
+    "should": "~7.1.0",
+    "chai": "~3.3.0"
+  },
+  "dependencies": {
+    "readline-sync": "^1.2.22"
+  }
+}
