@@ -1,6 +1,6 @@
-module.exports = function (grunt) {  
- 
-  grunt.initConfig({   
+module.exports = function (grunt) {
+
+  grunt.initConfig({
     jshint: {
       options: {
         jshintrc: true,
@@ -21,7 +21,7 @@ module.exports = function (grunt) {
         },
         src: ['./test/**/*.js']
       }
-    },  
+    },
 
   });
 

@@ -26,5 +26,7 @@ var boscode = require('../lib/index.js');
 
 var test = ['Hallo',123];
 
-
+// while (true) {
+//
+// }
 boscode.display('Hello world');
