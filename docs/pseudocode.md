@@ -51,13 +51,4 @@ In pseudocode:
 * structural elements come in pairs, eg for every BEGIN there is an END, for every IF there is an ENDIF.
 * indenting is used to identify control structures in the algorithm
 * the names of subprograms are underlined. This means that when refining the solution to a problem, a subroutine can be referred to in an algorithm by underlining its name, and a separate subprogram developed to show the logic of that routine. This feature enables the use of the top-down development concept, where details for a particular process need only be considered within the relevant subroutine.
-* 
-
-changed
-
-
-
-
-
-
-
+*
