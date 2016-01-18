@@ -17,7 +17,7 @@ Then:
 var boscode = require('boscode');
 ```
 
-## Usage
+## Console input/output
 
 ### display
 
@@ -43,4 +43,55 @@ Javascript
 var firstNumber = boscode.get();
 ```
 
+## Sequential file
+
+
+### Creating a sequential file
+
+Pseudocode
+```
+BEGIN CreateASequentialFile
+  Open FriendsData for output
+
+  Let firstName = "Joe"
+  Let lastName = "Bloggs"
+  Let emailAddress = "jbloggs@example.com"
+
+  Write FriendsData from firstName, lastName, emailAddress
+
+  Let firstName2 = "Jim"
+  Let lastName2 = "Doe"
+  Let emailAddress2 = "jdoe@example.com"
+
+  Write FriendsData from firstName2, lastName2, emailAddress2
+
+  Close FriendsData
+END CreateASequentialFile
+
+
+```
+
+Javascript
+```js
+
+var createASequentialFile = function(){
+  var friendsData = boscode.open('friendsData.txt','output');
+
+  var firstName = 'Joe';
+  var lastName = 'Bloggs';
+  var emailAddress = 'jbloggs@example.com';
+
+  friendsData.write(firstName, lastName, emailAddress);
+
+  var firstName2 = 'Jim';
+  var lastName2 = 'Doe';
+  var emailAddress2 = 'jdoe@example.com';
+
+  friendsData.write(firstName2, lastName2, emailAddress2);
+
+  friendsData.close();
+}
+
+
+```
 

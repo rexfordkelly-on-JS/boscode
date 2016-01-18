@@ -20,14 +20,13 @@
   },
   "homepage": "https://github.com/Quobject/boscode",
   "devDependencies": {
+    "chai": "^3.4.1",
     "grunt": "~0.4.5",
     "grunt-contrib-jshint": "~0.11.3",
-    "mocha": "~2.3.3",
-    "grunt-mocha-test": "~0.12.7",
-    "should": "~7.1.0",
-    "chai": "~3.3.0"
+    "grunt-mocha-test": "~0.12.7"
   },
   "dependencies": {
-    "readline-sync": "^1.2.22"
+    "readline-sync": "^1.2.22",
+    "lodash": "~3.10.1"
   }
 }
