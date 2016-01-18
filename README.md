@@ -10,7 +10,7 @@ Node.js pseudocode javascript helper methods for learning pseudocode compliant w
 ```    
 npm install boscode
 ```
-    
+
 Then:
 
 ```js
@@ -18,24 +18,38 @@ var boscode = require('boscode');
 ```
 
 ## Console input/output
-
+---
 ### display
 
+#### Example 1
 Pseudocode
 ```
 Display "Hello world"
 ```
-
 Javascript
 ```js
 boscode.display('Hello world');
+//Hello world
+```
+#### Example 2
+Pseudocode
+```
+Display "The answer is ", 4, "km"
+```
+Javascript
+```js
+boscode.display('The answer is ', 4, 'km');
+//The answer is 4km
 ```
 
+
+
+---
 ### get
 
 Pseudocode
 ```
-get firstNumber
+Get firstNumber
 ```
 
 Javascript
@@ -94,4 +108,3 @@ var createASequentialFile = function(){
 
 
 ```
-

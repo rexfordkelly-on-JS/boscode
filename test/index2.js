@@ -24,9 +24,6 @@
 /*global describe, it, before */
 var boscode = require('../lib/index.js');
 
-var test = ['Hallo',123];
-
-// while (true) {
-//
-// }
-boscode.display('Hello world');
+boscode.display('Your name:');
+var name = boscode.get();
+boscode.display('Hello ', name);

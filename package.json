@@ -4,7 +4,8 @@
   "description": "Node.js pseudocode javascript helper methods for learning pseudocode compliant with Board of studies, New South Wales, Australia, Software Design and Development Stage 6, Software and Course Specifications Higher School Certificiate 2012",
   "main": "lib/index.js",
   "scripts": {
-    "test": "grunt"
+    "test": "grunt",
+    "test2": "node ./test/index2.js"
   },
   "repository": {
     "type": "git",
@@ -23,7 +24,8 @@
     "chai": "^3.4.1",
     "grunt": "~0.4.5",
     "grunt-contrib-jshint": "~0.11.3",
-    "grunt-mocha-test": "~0.12.7"
+    "grunt-mocha-test": "~0.12.7",
+    "grunt-shell": "^1.1.2"
   },
   "dependencies": {
     "readline-sync": "^1.2.22",
