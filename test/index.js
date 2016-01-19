@@ -262,8 +262,65 @@ describe('sequential file', function () {
 
 
 describe('relative file', function () {
+  
+  it('write missing parameters', function () {
+    var productData = boscode.open('productData.txt', 'relative_access');
+    expect(function () {
+      productData.write();
+    }).to.throw('relative file write: missing parameters: write(object, usingKey)');
+  });
+
+  it('write missing parameters', function () {
+    var productData = boscode.open('productData.txt', 'relative_access');
+    expect(function () {
+      productData.write({});
+    }).to.throw('relative file write: missing parameters: write(object, usingKey)');
+  });
+
+  it('write wrong using key', function (done) {
 
 
+    Promise.resolve().then(function () {
+      return rimraf('productData.txt');
+    }).then(function () {
+
+      var productData = boscode.open('productData.txt', 'relative_access');
+
+      var productObject = {
+        productNumber: 1,
+        description: 'Laundry Liquid 2L',
+        quantity: 100,
+        price: 1.49
+      };
+
+      expect(function () {
+
+        productData.write(productObject, 'wrong using key');
+      }).to.throw(/relative file write: wrong using key wrong using key - object does not contain this key: { productNumber: 1,\n  description: \'Laundry Liquid 2L\',\n  quantity: 100,\n  price: 1.49 }/);
+
+
+      return rimraf('productData.txt');
+    }).finally(function () {
+      debug('finally');
+      done();
+    });
+
+  });
+
+  it('write wrong using key less than 1', function () {
+    var productData = boscode.open('productData.txt', 'relative_access');
+
+    var productObject = {
+      productNumber: 0,
+      description: 'Laundry Liquid 2L',
+      quantity: 100,
+      price: 1.49
+    };
+
+    expect(function () {
+      productData.write(productObject, 'productNumber');
+    }).to.throw(/relative file write: wrong key value 0 - The key field used must contain positive integer values only./);
+  });
 
 
   var createARelativeFile = function () {
@@ -282,33 +339,33 @@ describe('relative file', function () {
   };
 
 
-  //it('createARelativeFile', function (done) {
-  //  var debug = require('debug')('boscode:index.js createARelativeFile');
-  //  var fileName = 'productData.txt';
+  it('createARelativeFile', function (done) {
+    var debug = require('debug')('boscode:index.js createARelativeFile');
+    var fileName = 'productData.txt';
 
-  //  Promise.resolve().then(function () {
-  //    debug('1');
-  //    return rimraf(fileName);
-  //  }).then(function () {
-  //    assert(!fs.existsSync(fileName));
-  //    debug('2');
+    Promise.resolve().then(function () {
+      debug('1');
+      return rimraf(fileName);
+    }).then(function () {
+      assert(!fs.existsSync(fileName));
+      debug('2');
 
-  //  }).then(function () {
-  //    createARelativeFile();
-  //    var v = fs.existsSync(fileName);
-  //    expect(v).to.be.equal(true);
-  //    debug('3');
-  //    return fs.readFileSync(fileName, { encoding: 'utf8' });
-  //  }).then(function (content) {
-  //    debug('content', content);
-  //    expect(content).to.be.equal('todo');
-  //    return rimraf(fileName);
-  //  }).finally(function () {
-  //    debug('finally');
-  //    done();
-  //  });
+    }).then(function () {
+      createARelativeFile();
+      var v = fs.existsSync(fileName);
+      expect(v).to.be.equal(true);
+      debug('3');
+      return fs.readFileSync(fileName, { encoding: 'utf8' });
+    }).then(function (content) {
+      debug('content', content);
+      expect(content).to.be.equal('{"valueArray":[{"productNumber":1,"description":"Laundry Liquid 2L","quantity":100,"price":1.49}],"usingKey":"productNumber"}');
+      return rimraf(fileName);
+    }).finally(function () {
+      debug('finally');
+      done();
+    });
 
-  //});
+  });
 
 
 
