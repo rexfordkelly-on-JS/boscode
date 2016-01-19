@@ -1,6 +1,6 @@
 {
   "name": "boscode",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Node.js pseudocode javascript helper methods for learning pseudocode compliant with Board of studies, New South Wales, Australia, Software Design and Development Stage 6, Software and Course Specifications Higher School Certificiate 2012",
   "main": "lib/index.js",
   "scripts": {

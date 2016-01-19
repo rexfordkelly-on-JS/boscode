@@ -1,6 +1,8 @@
 # boscode
 
-Node.js pseudocode javascript helper methods for learning pseudocode compliant with Board of studies, New South Wales, Australia, Software Design and Development Stage 6, [Software and Course Specifications Higher School Certificiate 2012](http://www.boardofstudies.nsw.edu.au/syllabus_hsc/pdf_doc/software-design-development-course-specs.pdf)
+Node.js pseudocode javascript helper methods for learning pseudocode compliant with Board of studies (BOS), New South Wales, Australia, Software Design and Development Stage 6.
+
+[Software and Course Specifications Higher School Certificiate 2012](http://www.boardofstudies.nsw.edu.au/syllabus_hsc/pdf_doc/software-design-development-course-specs.pdf)
 
 
 [![NPM](https://nodei.co/npm/boscode.png?downloads=true&downloadRank=true)](https://nodei.co/npm/boscode/)
@@ -115,23 +117,6 @@ var createASequentialFile = function () {
 // Jim,Doe,jdoe@example.com
 
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ### Printing the contents of a file using sentinel value
 
@@ -289,11 +274,22 @@ var appendNewRows = function () {
 ```
 
 
-### Printing
+### Creating a relative file
 
 Pseudocode
 ```
+BEGIN CreateARelativeFile
+  Open ProductData for relative access
+  
+  FOR i = 1 to 10
+    Display “Please enter the details for the next product: ”
+    Get productNumber, description, quantity, price
+    Write ProductData from productNumber, description, quantity, price using productNumber
+    ’note the use of the variable productNumber as the key field, specifying where this record will be written in the file.
+  NEXT i
 
+  Close ProductData 
+END CreateARelativeFile
 ```
 
 Javascript
