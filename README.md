@@ -281,7 +281,7 @@ Pseudocode
 BEGIN CreateARelativeFile
   Open ProductData for relative access
 
-  Let productNumber = 1 
+  Let productNumber = 1
   Let description = "Laundry Liquid 2L"
   Let quantity = 100
   Let price = 1.49
@@ -290,7 +290,7 @@ BEGIN CreateARelativeFile
 
   ’note the use of the variable productNumber as the key field, specifying where this record will be written in the file.
 
-  Let productNumber = 2 
+  Let productNumber = 2
   Let description = "Mate Laundry Liquid 1L"
   Let quantity = 300
   Let price = 3.99
@@ -303,112 +303,130 @@ END CreateARelativeFile
 
 Javascript
 ```js
+var createARelativeFile = function () {
+  var productData = boscode.open('productData.txt', 'relative_access');
 
+  var productObject = {
+    productNumber: 1,
+    description: 'Laundry Liquid 2L',
+    quantity: 100,
+    price: 1.49
+  };
+
+  productData.write(productObject, 'productNumber');
+
+  productObject = {
+    productNumber: 2,
+    description: 'Mate Laundry Liquid 1L',
+    quantity: 300,
+    price: 3.99
+  };
+
+  productData.write(productObject, 'productNumber');
+
+  productData.close();
+};
 
 
 ```
 
 
-### Printing
+### Reading from a relative file
 
 Pseudocode
 ```
+BEGIN ReadRecordsFromARelativeFile
+  Open ProductData for relative access
+
+  Let RequiredProdNumber = 1
+
+  Read ProductData into productNumber, description, quantity, price using RequiredProdNumber
+  ’note the use of the variable RequiredProdNumber as the key field, specifying where this record will be found in the file
+  
+  IF RecordNotFound THEN
+    ’note the use of the flag RecordNotFound returned by the operating system 
+    Display “Sorry – no such product”
+  ELSE
+    Display productNumber, description, quantity, price
+  END IF
+  
+  Close ProductData
+END ReadRecordsFromARelativeFile
 
 ```
 
 Javascript
 ```js
+var readRecordsFromARelativeFile = function () {
+  var productData = boscode.open('productData.txt', 'relative_access');
 
+  var requiredProdNumber = 1;
+
+  var productRecord = productData.read(requiredProdNumber);
+
+  if (productRecord === boscode.RECORD_NOT_FOUND) {
+    boscode.display('Sorry - no such product');
+  } else {
+    boscode.display( JSON.stringify(productRecord) );
+  }    
+
+  productData.close();
+};
+
+//{"productNumber":1,"description":"Laundry Liquid 2L","quantity":100,"price":1.49}
 
 
 ```
 
 
-### Printing
+### Updating records in a relative file
 
 Pseudocode
 ```
+BEGIN UpdateRecordsInARelativeFile
+  Open ProductData for relative access
+
+  Let RequiredProdNumber = 1
+
+  Read ProductData into productNumber, description, quantity, price using RequiredProdNumber
+  
+  IF RecordNotFound THEN
+    'note the use of the flag RecordNotFound returned by the operating system 
+    Display “Sorry – no such product”
+  ELSE
+    Display productNumber, description, quantity, price
+    Let newPrice = 1000
+
+    Write ProductData from productNumber, description, quantity, newPrice using productNumber
+    'update record using data for the new price and the existing data in the other fields
+
+  END IF
+  
+  Close ProductData
+END UpdateRecordsInARelativeFile
 
 ```
 
 Javascript
 ```js
+var updateRecordsInARelativeFile = function () {
+  var productData = boscode.open('productData.txt', 'relative_access');
 
+  var requiredProdNumber = 1;
 
+  var productRecord = productData.read(requiredProdNumber);
 
-```
+  if (productRecord === boscode.RECORD_NOT_FOUND) {
+    boscode.display('Sorry - no such product');
+  } else {
+    boscode.display(JSON.stringify(productRecord));
+    productRecord.price = 1000;
 
+    productData.write(productRecord, 'productNumber');
+  }
 
-### Printing
-
-Pseudocode
-```
-
-```
-
-Javascript
-```js
-
-
-
-```
-
-
-### Printing
-
-Pseudocode
-```
-
-```
-
-Javascript
-```js
-
-
-
-```
-
-
-### Printing
-
-Pseudocode
-```
-
-```
-
-Javascript
-```js
-
-
-
-```
-
-
-### Printing
-
-Pseudocode
-```
-
-```
-
-Javascript
-```js
-
-
-
-```
-
-
-### Printing
-
-Pseudocode
-```
-
-```
-
-Javascript
-```js
-
+  productData.close();
+};
 
 
 ```

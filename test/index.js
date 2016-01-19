@@ -368,6 +368,161 @@ describe('relative file', function () {
   });
 
 
+  var createARelativeFile2 = function () {
+    var productData = boscode.open('productData.txt', 'relative_access');
+
+    var productObject = {
+      productNumber: 1,
+      description: 'Laundry Liquid 2L',
+      quantity: 100,
+      price: 1.49
+    };
+
+    productData.write(productObject, 'productNumber');
+
+    productObject = {
+      productNumber: 2,
+      description: 'Mate Laundry Liquid 1L',
+      quantity: 300,
+      price: 3.99
+    };
+
+    productData.write(productObject, 'productNumber');
+
+    productData.close();
+  };
+
+
+  it('createARelativeFile2', function (done) {
+    var debug = require('debug')('boscode:index.js createARelativeFile');
+    var fileName = 'productData.txt';
+
+    Promise.resolve().then(function () {
+      debug('1');
+      return rimraf(fileName);
+    }).then(function () {
+      assert(!fs.existsSync(fileName));
+      debug('2');
+
+    }).then(function () {
+      createARelativeFile2();
+      var v = fs.existsSync(fileName);
+      expect(v).to.be.equal(true);
+      debug('3');
+      return fs.readFileSync(fileName, { encoding: 'utf8' });
+    }).then(function (content) {
+      debug('content', content);
+      expect(content).to.be.equal('{"valueArray":[{"productNumber":1,"description":"Laundry Liquid 2L","quantity":100,"price":1.49},{"productNumber":2,"description":"Mate Laundry Liquid 1L","quantity":300,"price":3.99}],"usingKey":"productNumber"}');
+      //return rimraf(fileName);
+    }).finally(function () {
+      debug('finally');
+      done();
+    });
+
+  });
+
+
+  it('read missing parameter', function () {
+    var productData = boscode.open('productData.txt', 'relative_access');
+    expect(function () {
+      productData.read();
+    }).to.throw('relative file read: missing parameter: read(usingValue)');
+  });
+
+  it('read new file', function (done) {
+
+    Promise.resolve().then(function () {
+      return rimraf('productData.txt');
+    }).then(function () {
+      var productData = boscode.open('productData.txt', 'relative_access');
+
+      var record = productData.read(1);
+      assert.equal(record, boscode.RECORD_NOT_FOUND);
+    }).finally(function () {
+      debug('finally');
+      done();
+    });
+  });
+
+
+
+
+  var readRecordsFromARelativeFile = function () {
+    var productData = boscode.open('productData.txt', 'relative_access');
+
+    var requiredProdNumber = 1;
+
+    var productRecord = productData.read(requiredProdNumber);
+
+    if (productRecord === boscode.RECORD_NOT_FOUND) {
+      boscode.display('Sorry - no such product');
+    } else {
+      boscode.display( JSON.stringify(productRecord) );
+    }    
+
+    productData.close();
+  };
+
+
+  it('readRecordsFromARelativeFile', function (done) {
+    var debug = require('debug')('boscode:index.js createARelativeFile');
+    var fileName = 'productData.txt';
+
+    Promise.resolve().then(function () {  
+      createARelativeFile2();
+      readRecordsFromARelativeFile();
+      //return rimraf(fileName);
+    }).finally(function () {
+      debug('finally');
+      done();
+    });
+
+  });
+
+
+  var updateRecordsInARelativeFile = function () {
+    var productData = boscode.open('productData.txt', 'relative_access');
+
+    var requiredProdNumber = 1;
+
+    var productRecord = productData.read(requiredProdNumber);
+
+    if (productRecord === boscode.RECORD_NOT_FOUND) {
+      boscode.display('Sorry - no such product');
+    } else {
+      boscode.display(JSON.stringify(productRecord));
+      productRecord.price = 1000;
+
+      productData.write(productRecord, 'productNumber');
+    }
+
+    productData.close();
+  };
+
+
+  it('updateRecordsInARelativeFile', function (done) {
+    var debug = require('debug')('boscode:index.js updateRecordsInARelativeFile');
+    var fileName = 'productData.txt';
+
+    Promise.resolve().then(function () {
+      createARelativeFile2();
+      updateRecordsInARelativeFile();
+      //return rimraf(fileName);
+    }).finally(function () {
+      debug('finally');
+      done();
+    });
+
+  });
+
+
+
+
+
+
+
+
+
 
 
 });
