@@ -73,11 +73,11 @@ BEGIN CreateASequentialFile
 
   Write FriendsData from firstName, lastName, emailAddress
 
-  Let firstName2 = "Jim"
-  Let lastName2 = "Doe"
-  Let emailAddress2 = "jdoe@example.com"
+  Let firstName = "Jim"
+  Let lastName = "Doe"
+  Let emailAddress = "jdoe@example.com"
 
-  Write FriendsData from firstName2, lastName2, emailAddress2
+  Write FriendsData from firstName, lastName, emailAddress
 
   Close FriendsData
 END CreateASequentialFile
@@ -88,23 +88,30 @@ END CreateASequentialFile
 Javascript
 ```js
 
-var createASequentialFile = function(){
-  var friendsData = boscode.open('friendsData.txt','output');
+var createASequentialFile = function () {
+  var friendsData = boscode.open('friendsData.txt', 'output');
 
   var firstName = 'Joe';
   var lastName = 'Bloggs';
   var emailAddress = 'jbloggs@example.com';
 
-  friendsData.write(firstName, lastName, emailAddress);
+  var row = [firstName, lastName, emailAddress].join(','); // creates a comma separated string
 
-  var firstName2 = 'Jim';
-  var lastName2 = 'Doe';
-  var emailAddress2 = 'jdoe@example.com';
+  friendsData.write(row);  
 
-  friendsData.write(firstName2, lastName2, emailAddress2);
+  firstName = 'Jim';
+  lastName = 'Doe';
+  emailAddress = 'jdoe@example.com';
+
+  row = [firstName, lastName, emailAddress].join(','); // creates a comma separated string
+
+  friendsData.write(row);
 
   friendsData.close();
-}
+};
 
+// content of friendsData.txt:
+// Joe,Bloggs,jbloggs@example.com
+// Jim,Doe,jdoe@example.com
 
 ```
