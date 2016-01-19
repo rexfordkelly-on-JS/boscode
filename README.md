@@ -115,3 +115,254 @@ var createASequentialFile = function () {
 // Jim,Doe,jdoe@example.com
 
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### Printing the contents of a file using sentinel value
+
+Pseudocode
+```
+BEGIN DisplayFileContents
+  Open FriendsData for input
+
+  Read firstName, lastName, emailAddress from FriendsData
+  ’This is a priming read, performed just before entering the loop to provide
+  'the first record (if there is one) for printing
+
+  WHILE firstName <> “xxx”
+    Display firstName, lastName, emailAddress
+    Read firstName, lastName, emailAddress from FriendsData
+    ’this reads subsequent records which can then be tested for the sentinel
+    'value before they are processed
+  END WHILE
+
+  Close FriendsData
+END DisplayFileContents
+
+```
+
+Javascript
+```js
+var displayFileContents = function () {
+  var friendsData = boscode.open('friendsData.txt', 'input');
+
+  var row = friendsData.read();
+  var tempArray = row.split(',');
+  var firstName = tempArray[0];
+  var lastName = tempArray[1];
+  var emailAddress = tempArray[2];
+
+  while ( firstName !== 'xxx' ) {
+    boscode.display(firstName, lastName, emailAddress);
+
+    row = friendsData.read();
+    tempArray = row.split(',');
+    firstName = tempArray[0];
+    lastName = tempArray[1];
+    emailAddress = tempArray[2];
+  }
+
+  friendsData.close();
+};
+
+
+```
+
+### Printing the contents of a file using EOF (end of file)
+
+Pseudocode
+```
+BEGIN DisplayFileContents
+  Open FriendsData for input
+
+  Read firstName, lastName, emailAddress from FriendsData
+  ’This is a priming read, performed just before entering the loop to provide
+  'the first record (if there is one) for printing
+
+  WHILE not EOF
+    Display firstName, lastName, emailAddress
+    Read firstName, lastName, emailAddress from FriendsData
+    ’this reads subsequent records which can then be tested for the sentinel
+    'value before they are processed
+  END WHILE
+
+  Close FriendsData
+END DisplayFileContents
+
+```
+
+Javascript
+```js
+var displayFileContents = function () {
+  var friendsData = boscode.open('friendsData.txt', 'input');
+
+  var row = friendsData.read();
+
+  var tempArray, firstName, lastName, emailAddress;
+
+  while (row !== boscode.EOF) {
+    tempArray = row.split(',');
+    firstName = tempArray[0];
+    lastName = tempArray[1];
+    emailAddress = tempArray[2];
+    boscode.display(firstName, lastName, emailAddress);
+
+    row = friendsData.read();
+  }
+
+  friendsData.close();
+};
+
+
+```
+
+
+
+### Printing
+
+Pseudocode
+```
+
+```
+
+Javascript
+```js
+
+
+
+```
+
+
+### Printing
+
+Pseudocode
+```
+
+```
+
+Javascript
+```js
+
+
+
+```
+
+
+### Printing
+
+Pseudocode
+```
+
+```
+
+Javascript
+```js
+
+
+
+```
+
+
+### Printing
+
+Pseudocode
+```
+
+```
+
+Javascript
+```js
+
+
+
+```
+
+
+### Printing
+
+Pseudocode
+```
+
+```
+
+Javascript
+```js
+
+
+
+```
+
+
+### Printing
+
+Pseudocode
+```
+
+```
+
+Javascript
+```js
+
+
+
+```
+
+
+### Printing
+
+Pseudocode
+```
+
+```
+
+Javascript
+```js
+
+
+
+```
+
+
+### Printing
+
+Pseudocode
+```
+
+```
+
+Javascript
+```js
+
+
+
+```
+
+
+### Printing
+
+Pseudocode
+```
+
+```
+
+Javascript
+```js
+
+
+
+```

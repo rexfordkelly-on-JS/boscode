@@ -123,4 +123,138 @@ describe('sequential file', function () {
 
   });
 
+
+
+
+
+  var createASequentialFile2 = function () {
+    var friendsData = boscode.open('friendsData.txt', 'output');    
+
+    friendsData.write(['Joe', 'Bloggs', 'jbloggs@example.com'].join(','));
+    friendsData.write(['Jim', 'Doe', 'jdoe@example.com'].join(','));
+    friendsData.write(['xxx', '', ''].join(','));
+
+    friendsData.close();
+  };
+
+  var removeSequentialFile = function () {
+    return rimraf('friendsData.txt');
+  };
+
+
+  var displayFileContents = function () {
+    var friendsData = boscode.open('friendsData.txt', 'input');
+
+    var row = friendsData.read();
+    var tempArray = row.split(',');
+    var firstName = tempArray[0];
+    var lastName = tempArray[1];
+    var emailAddress = tempArray[2];
+
+    while ( firstName !== 'xxx' ) {
+      boscode.display(firstName, lastName, emailAddress);
+
+      row = friendsData.read();
+      tempArray = row.split(',');
+      firstName = tempArray[0];
+      lastName = tempArray[1];
+      emailAddress = tempArray[2];
+    }
+
+    friendsData.close();
+  };
+
+
+  it('displayFileContents', function (done) {
+    var debug = require('debug')('boscode:index.js createASequentialFile');
+    var fileName = 'friendsData.txt';
+
+    Promise.resolve().then(function () {
+      createASequentialFile2();
+      displayFileContents();
+
+ 
+    }).finally(function () {
+      debug('finally');
+      done();
+    });
+
+  });
+
+  it('read wrong mode', function () {
+    createASequentialFile2();
+
+    assert.throw( function(){
+      var friendsData = boscode.open('friendsData.txt', 'output');
+      friendsData.read();
+    }, /read can only be called if file was opened for input/);
+
+    assert.throw(function () {
+      var friendsData = boscode.open('friendsData.txt', 'append');
+      friendsData.read();
+    }, /read can only be called if file was opened for input/);
+
+    removeSequentialFile();
+  });
+
+  it('write wrong mode', function () {
+    createASequentialFile2();
+
+    assert.throw(function () {
+      var friendsData = boscode.open('friendsData.txt', 'input');
+      friendsData.write('test');
+    }, /write can not be called if file was opened for input/);
+    removeSequentialFile();
+  });
+
+
+  it('input file not existent', function () {
+
+    removeSequentialFile();
+    assert.throw(function () {
+      var friendsData = boscode.open('friendsData.txt', 'input');
+      friendsData.write('test');
+    }, /for mode = input the file must exist. File friendsData.txt does not exist./);
+
+  });
+
+
+  var displayFileContentsEOF = function () {
+    var friendsData = boscode.open('friendsData.txt', 'input');
+
+    var row = friendsData.read();
+    
+    var tempArray, firstName, lastName, emailAddress;
+
+    while (row !== boscode.EOF) {
+      tempArray = row.split(',');
+      firstName = tempArray[0];
+      lastName = tempArray[1];
+      emailAddress = tempArray[2];
+      boscode.display(firstName, lastName, emailAddress);
+
+      row = friendsData.read();
+    }
+
+    friendsData.close();
+  };
+
+
+  it('displayFileContentsEOF', function (done) {
+    var debug = require('debug')('boscode:index.js displayFileContentsEOF');
+    var fileName = 'friendsData.txt';
+
+    Promise.resolve().then(function () {
+      createASequentialFile2();
+      displayFileContentsEOF();
+
+
+    }).finally(function () {
+      debug('finally');
+      done();
+    });
+
+  });
+
+
 });
