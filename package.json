@@ -27,11 +27,12 @@
     "grunt": "~0.4.5",
     "grunt-contrib-jshint": "~0.11.3",
     "grunt-mocha-test": "~0.12.7",
-    "grunt-shell": "^1.1.2",   
+    "grunt-shell": "^1.1.2",
     "rimraf-then": "^1.0.0"
   },
   "dependencies": {
-    "readline-sync": "^1.2.22",
-    "lodash": "~3.10.1"
+    "JSONPath": "^0.11.2",
+    "lodash": "~3.10.1",
+    "readline-sync": "^1.2.22"
   }
 }

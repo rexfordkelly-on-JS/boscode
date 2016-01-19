@@ -272,7 +272,7 @@ var appendNewRows = function () {
 
 
 ```
-
+## Relative file
 
 ### Creating a relative file
 
@@ -280,15 +280,24 @@ Pseudocode
 ```
 BEGIN CreateARelativeFile
   Open ProductData for relative access
-  
-  FOR i = 1 to 10
-    Display “Please enter the details for the next product: ”
-    Get productNumber, description, quantity, price
-    Write ProductData from productNumber, description, quantity, price using productNumber
-    ’note the use of the variable productNumber as the key field, specifying where this record will be written in the file.
-  NEXT i
 
-  Close ProductData 
+  Let productNumber = 1 
+  Let description = "Laundry Liquid 2L"
+  Let quantity = 100
+  Let price = 1.49
+
+  Write ProductData from productNumber, description, quantity, price using productNumber
+
+  ’note the use of the variable productNumber as the key field, specifying where this record will be written in the file.
+
+  Let productNumber = 2 
+  Let description = "Mate Laundry Liquid 1L"
+  Let quantity = 300
+  Let price = 3.99
+
+  Write ProductData from productNumber, description, quantity, price using productNumber
+
+  Close ProductData
 END CreateARelativeFile
 ```
 

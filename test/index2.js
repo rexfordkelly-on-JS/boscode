@@ -90,5 +90,5 @@ var appendNewRows = function () {
   friendsData.close();
 };
 
-createASequentialFile();
-appendNewRows();
+//createASequentialFile();
+//appendNewRows();

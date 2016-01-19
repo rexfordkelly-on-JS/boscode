@@ -63,13 +63,13 @@ describe('sequential file', function () {
   it('missing mode', function () {
     expect(function () {
       boscode.open('tst');
-    }).to.throw('open: second parameter missing (mode) possible values: output, input, append, relativ_access');
+    }).to.throw('open: second parameter missing (mode) possible values: output, input, append, relative_access');
   });
 
   it('wrong mode', function () {
     expect(function () {
       boscode.open('tst','wrong');
-    }).to.throw('open: second parameter wrong (mode) possible values: output, input, append, relativ_access');
+    }).to.throw('open: second parameter wrong (mode) possible values: output, input, append, relative_access');
   });
 
 
@@ -255,6 +255,62 @@ describe('sequential file', function () {
     });
 
   });
+
+
+});
+
+
+
+describe('relative file', function () {
+
+
+
+
+  var createARelativeFile = function () {
+    var productData = boscode.open('productData.txt', 'relative_access');
+
+    var productObject = {
+      productNumber: 1,
+      description: 'Laundry Liquid 2L',
+      quantity: 100,
+      price: 1.49
+    };
+
+    productData.write(productObject, 'productNumber');
+
+    productData.close();
+  };
+
+
+  //it('createARelativeFile', function (done) {
+  //  var debug = require('debug')('boscode:index.js createARelativeFile');
+  //  var fileName = 'productData.txt';
+
+  //  Promise.resolve().then(function () {
+  //    debug('1');
+  //    return rimraf(fileName);
+  //  }).then(function () {
+  //    assert(!fs.existsSync(fileName));
+  //    debug('2');
+
+  //  }).then(function () {
+  //    createARelativeFile();
+  //    var v = fs.existsSync(fileName);
+  //    expect(v).to.be.equal(true);
+  //    debug('3');
+  //    return fs.readFileSync(fileName, { encoding: 'utf8' });
+  //  }).then(function (content) {
+  //    debug('content', content);
+  //    expect(content).to.be.equal('todo');
+  //    return rimraf(fileName);
+  //  }).finally(function () {
+  //    debug('finally');
+  //    done();
+  //  });
+
+  //});
+
+
 
 
 });
