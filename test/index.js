@@ -27,7 +27,11 @@ var should = require('chai').should();
 var assert = require('chai').assert;
 var expect = require('chai').expect;
 var util = require('util');
-
+var rimraf = require('rimraf-then');
+var Promise = require('bluebird');
+var debug = require('debug')('boscode:index.js');
+var fs = require('fs');
+var os = require('os');
 
 describe('boscode', function () {
 
@@ -69,24 +73,54 @@ describe('sequential file', function () {
   });
 
 
-  //it('createASequentialFile', function () {
-  //  var friendsData = boscode.open('friendsData.txt', 'output');
+  var createASequentialFile = function () {
+    var friendsData = boscode.open('friendsData.txt', 'output');
 
-  //  var firstName = 'Joe';
-  //  var lastName = 'Bloggs';
-  //  var emailAddress = 'jbloggs@example.com';
+    var firstName = 'Joe';
+    var lastName = 'Bloggs';
+    var emailAddress = 'jbloggs@example.com';
 
-  //  friendsData.write(firstName, lastName, emailAddress);
+    var row = [firstName, lastName, emailAddress].join(','); // creates a comma separated string
 
-  //  var firstName2 = 'Jim';
-  //  var lastName2 = 'Doe';
-  //  var emailAddress2 = 'jdoe@example.com';
+    friendsData.write(row);
 
-  //  friendsData.write(firstName2, lastName2, emailAddress2);
+    firstName = 'Jim';
+    lastName = 'Doe';
+    emailAddress = 'jdoe@example.com';
+    row = [firstName, lastName, emailAddress].join(','); // creates a comma separated string
 
-  //  friendsData.close();
+    friendsData.write(row);
 
-  //});
+    friendsData.close();
+  };
 
+
+  it('createASequentialFile', function (done) {
+    var debug = require('debug')('boscode:index.js createASequentialFile');
+    var fileName = 'friendsData.txt';
+
+    Promise.resolve().then(function () {
+      debug('1');
+      return rimraf(fileName);
+    }).then(function () {
+      assert(!fs.existsSync(fileName));
+      debug('2');
+
+    }).then(function () {
+      createASequentialFile();
+      var v = fs.existsSync(fileName);
+      expect(v).to.be.equal(true);
+      debug('3');
+      return fs.readFileSync(fileName, {encoding: 'utf8'});
+    }).then(function (content) {
+      debug('content', content);
+      expect(content).to.be.equal('Joe,Bloggs,jbloggs@example.com' + os.EOL + 'Jim,Doe,jdoe@example.com');
+      return rimraf(fileName);
+    }).finally(function () {
+      debug('finally');
+      done();
+    });
+
+  });
 
 });

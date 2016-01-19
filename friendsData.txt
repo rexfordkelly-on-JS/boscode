@@ -1,2 +1,0 @@
-Joe,Bloggs,jbloggs@example.com
-Jim,Doe,jdoe@example.com
