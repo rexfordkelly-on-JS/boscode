@@ -233,16 +233,57 @@ var displayFileContents = function () {
 
 
 
-### Printing
+### Appending rows to an existing sequential file
 
 Pseudocode
 ```
+BEGIN AppendNewRows
+  Open FriendsData for append
 
+  Display “Please enter the details for the first new person to be added:”
+  Display “Enter xxx for first name to indicate there are no more rows to be added.”
+
+  Get firstName, lastName, emailAddress
+
+  WHILE firstName <> “xxx”
+    Write FriendsData from firstName, lastName, emailAddress
+
+    Display “Please enter the details for the next new person to be added:”
+
+    Get firstName, lastName, emailAddress
+  END WHILE
+
+  Close FriendsData
+END AppendNewRows
 ```
 
 Javascript
 ```js
+var appendNewRows = function () {
+  var friendsData = boscode.open('friendsData.txt', 'append');
 
+  boscode.display('Please enter the details for the first new person to be added:');
+  boscode.display('Enter xxx for first name to indicate there are no more rows to be added.');
+
+  var firstName = boscode.get('First Name:');
+  var lastName = boscode.get('Last Name:');
+  var emailAddress = boscode.get('Email Address:');
+  var row = [firstName, lastName, emailAddress].join(',');
+
+  while (firstName !== 'xxx') {
+
+    friendsData.write(row);
+
+    boscode.display('Please enter the details for the next new person to be added:');
+
+    firstName = boscode.get('First Name:');
+    lastName = boscode.get('Last Name:');
+    emailAddress = boscode.get('Email Address:');
+    row = [firstName, lastName, emailAddress].join(',');
+  }
+
+  friendsData.close();
+};
 
 
 ```
