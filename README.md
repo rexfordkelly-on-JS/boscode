@@ -430,4 +430,4 @@ var updateRecordsInARelativeFile = function () {
 
 
 ```
-[more pseudocode examples](docs/pseudocode.md)
+[more pseudocode examples](https://github.com/Quobject/boscode/blob/master/docs/pseudocode.md)

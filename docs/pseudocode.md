@@ -113,6 +113,7 @@ ___
 * Post-test repetition: repeat
 ```
 BEGIN 
+  number = 0
   REPEAT  
     Display number  
     number = number + 2 
@@ -175,7 +176,7 @@ BEGIN PrintArrayContents
   element(3) = 10
 
   i = 1
-  WHILE i < 3
+  WHILE i <= 3
     Display element(i) 
     i = i + 1
   ENDWHILE
@@ -194,7 +195,7 @@ BEGIN SumArrayContents
   i = 1
   sum = 0
 
-  WHILE i < 3
+  WHILE i <= 3
     sum = sum + element(i)
     i = i + 1
   ENDWHILE  
