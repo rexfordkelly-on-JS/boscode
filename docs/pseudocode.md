@@ -57,7 +57,7 @@ ___
 
 ## Examples
 
-* Sequence 
+### Sequence 
 ```
 Get firstNumber
 Get secondNumber
@@ -67,7 +67,7 @@ Display "the sum of your 2 numbers is ", sum
 
 ___
 
-* Binary selection
+### Binary selection
 ```
 myguess = 7
 Get guess
@@ -80,7 +80,7 @@ END IF
 
 ___
 
-* Casewhere
+### Casewhere
 ```
 BEGIN  
   N = 20  
@@ -96,7 +96,7 @@ END
 
 ___
 
-* Pre-test repetition: while
+### Pre-test repetition: while
 ```
 BEGIN 
   number = 5 
@@ -110,7 +110,7 @@ END
 
 ___
 
-* Post-test repetition: repeat
+### Post-test repetition: repeat
 ```
 BEGIN 
   number = 0
@@ -123,7 +123,7 @@ END
 
 ___
 
-* FOR/NEXT or counted loop
+### FOR/NEXT or counted loop
 ```
 BEGIN
   FOR i = 1 to 12 STEP 1
@@ -134,7 +134,7 @@ END
 
 ___
 
-* Subprogram
+### Subprogram
 ```
 BEGIN Main
   Get a
@@ -150,7 +150,7 @@ END Sum
 Note: The word <u>Sum</u> should be underlined in the above code
 ___
 
-* Load array
+### Load array
 ```
 BEGIN LoadArray
   i = 1
@@ -168,7 +168,7 @@ END LoadArray
 
 ___
 
-* Print array contents
+### Print array contents
 ```
 BEGIN PrintArrayContents
   element(1) = 3
@@ -185,7 +185,7 @@ END PrintArrayContents
 
 ___
 
-* Add the contents of an array
+### Add the contents of an array
 ```
 BEGIN SumArrayContents
   element(1) = 3
@@ -207,7 +207,7 @@ END SumArrayContents
 
 ___
 
-* Find maximum value in an array
+### Find maximum value in an array
 ```
 BEGIN FindMAX
   element(1) = 3
@@ -234,7 +234,7 @@ END FindMAX
 ```
 ___
 
-* Find minimum value in an array
+### Find minimum value in an array
 ```
 BEGIN FindMIN
   element(1) = 3
