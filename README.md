@@ -69,15 +69,15 @@ Pseudocode
 BEGIN CreateASequentialFile
   Open FriendsData for output
 
-  Let firstName = "Joe"
-  Let lastName = "Bloggs"
-  Let emailAddress = "jbloggs@example.com"
+  firstName = "Joe"
+  lastName = "Bloggs"
+  emailAddress = "jbloggs@example.com"
 
   Write FriendsData from firstName, lastName, emailAddress
 
-  Let firstName = "Jim"
-  Let lastName = "Doe"
-  Let emailAddress = "jdoe@example.com"
+  firstName = "Jim"
+  lastName = "Doe"
+  emailAddress = "jdoe@example.com"
 
   Write FriendsData from firstName, lastName, emailAddress
 
@@ -281,19 +281,19 @@ Pseudocode
 BEGIN CreateARelativeFile
   Open ProductData for relative access
 
-  Let productNumber = 1
-  Let description = "Laundry Liquid 2L"
-  Let quantity = 100
-  Let price = 1.49
+  productNumber = 1
+  description = "Laundry Liquid 2L"
+  quantity = 100
+  price = 1.49
 
   Write ProductData from productNumber, description, quantity, price using productNumber
 
   ’note the use of the variable productNumber as the key field, specifying where this record will be written in the file.
 
-  Let productNumber = 2
-  Let description = "Mate Laundry Liquid 1L"
-  Let quantity = 300
-  Let price = 3.99
+  productNumber = 2
+  description = "Mate Laundry Liquid 1L"
+  quantity = 300
+  price = 3.99
 
   Write ProductData from productNumber, description, quantity, price using productNumber
 
@@ -338,7 +338,7 @@ Pseudocode
 BEGIN ReadRecordsFromARelativeFile
   Open ProductData for relative access
 
-  Let RequiredProdNumber = 1
+  RequiredProdNumber = 1
 
   Read ProductData into productNumber, description, quantity, price using RequiredProdNumber
   ’note the use of the variable RequiredProdNumber as the key field, specifying where this record will be found in the file
@@ -386,7 +386,7 @@ Pseudocode
 BEGIN UpdateRecordsInARelativeFile
   Open ProductData for relative access
 
-  Let RequiredProdNumber = 1
+  RequiredProdNumber = 1
 
   Read ProductData into productNumber, description, quantity, price using RequiredProdNumber
   
@@ -395,7 +395,7 @@ BEGIN UpdateRecordsInARelativeFile
     Display “Sorry – no such product”
   ELSE
     Display productNumber, description, quantity, price
-    Let newPrice = 1000
+    newPrice = 1000
 
     Write ProductData from productNumber, description, quantity, newPrice using productNumber
     'update record using data for the new price and the existing data in the other fields
@@ -430,3 +430,4 @@ var updateRecordsInARelativeFile = function () {
 
 
 ```
+[more pseudocode examples](docs/pseudocode.md)
