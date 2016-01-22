@@ -35,9 +35,13 @@ var os = require('os');
 
 describe('boscode', function () {
 
-  //it('display', function () {
-  //  boscode.display('Hello world');
-  //});
+  it('display', function () {
+    boscode.display('Hello world');
+    boscode.display(['1', {a:2},234]);
+    boscode.display({ a: 4, b: 'yes' });
+    boscode.display('Answer is ', 345, 'km');
+    boscode.display('Answer is ', 345, 'km ', { a: 4, b: 'yes' });
+  });
 
   //it('get', function () {
   //  this.timeout(15000);
