@@ -75,7 +75,7 @@ IF guess = myguess THEN
   Display "Well done — you guessed my number!"
 ELSE
   Display "That is not correct"
-END IF
+ENDIF
 ```
 
 ___
