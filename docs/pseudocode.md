@@ -82,29 +82,30 @@ ___
 
 ### Casewhere
 ```
-BEGIN  
-  N = 20  
-  CASEWHERE n is    
-    less than 10 : n = n + 5
-    30 : Display "n is thirty"
-    greater than 50 : n = n + 30    
-    OTHERWISE : n = n + 50  
-  ENDCASE  
-  Display n 
-END
+
+N = 20  
+
+CASEWHERE n is    
+  less than 10 : n = n + 5
+  30 : Display "n is thirty"
+  greater than 50 : n = n + 30    
+  OTHERWISE : n = n + 50  
+ENDCASE  
+
+Display n 
+
 ```
 
 ___
 
 ### Pre-test repetition: while
 ```
-BEGIN 
-  number = 5 
-  WHILE number < 200  
-    Display number  
-    Increment number by 2 
-  ENDWHILE 
-END
+number = 5 
+
+WHILE number < 200  
+  Display number  
+  Increment number by 2 
+ENDWHILE 
 	
 ```
 
@@ -112,24 +113,21 @@ ___
 
 ### Post-test repetition: repeat
 ```
-BEGIN 
-  number = 0
-  REPEAT  
-    Display number  
-    number = number + 2 
-  UNTIL number > 200 
-END	
+number = 0
+
+REPEAT  
+  Display number  
+  number = number + 2 
+UNTIL number > 200 
 ```
 
 ___
 
 ### FOR/NEXT or counted loop
 ```
-BEGIN
-  FOR i = 1 to 12 STEP 1
-    Display "12 x ", i," = ", (12 * i) 
-  NEXT i
-END
+FOR i = 1 to 12 STEP 1
+  Display "12 x ", i," = ", (12 * i) 
+NEXT i
 ```
 
 ___
