@@ -143,7 +143,7 @@ BEGIN Main
   Display "a + b = ", c
 END Main
 
-BEGIN Sum
+BEGIN Sum(a,b,c)
   c = a + b
 END Sum
 ```
