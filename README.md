@@ -8,6 +8,8 @@ Node.js pseudocode javascript helper methods for learning pseudocode compliant w
 [![NPM](https://nodei.co/npm/boscode.png?downloads=true&downloadRank=true)](https://nodei.co/npm/boscode/)
 [![NPM](https://nodei.co/npm-dl/boscode.png?months=6&height=3)](https://nodei.co/npm/boscode/)
 
+See also [boscode-learn](https://github.com/Quobject/boscode-learn).
+
 ## Installation
 ```    
 npm install boscode
